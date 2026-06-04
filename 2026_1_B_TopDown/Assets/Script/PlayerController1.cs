@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController1 : MonoBehaviour
 {
@@ -31,6 +32,13 @@ public class PlayerController1 : MonoBehaviour
 
         moveInput =
             moveInput.normalized;
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(
+                SceneManager.GetActiveScene().name
+            );
+        }
     }
 
     private void FixedUpdate()
