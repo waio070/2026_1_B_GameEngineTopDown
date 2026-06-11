@@ -9,6 +9,8 @@ public class DoorObject : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("문 통과");
+
             SceneManager.LoadScene(NextSceneName);
         }
     }

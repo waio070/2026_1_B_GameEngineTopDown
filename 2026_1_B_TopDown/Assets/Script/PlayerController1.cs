@@ -16,12 +16,6 @@ public class PlayerController1 : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
-    {
-        transform.position =
-            currentStageData.playerStartPosition;
-    }
-
     private void Update()
     {
         moveInput.x =
@@ -43,7 +37,14 @@ public class PlayerController1 : MonoBehaviour
 
     private void FixedUpdate()
     {
+        float bonus = 0f;
+
+        if (GameManager.Instance != null)
+        {
+            bonus = GameManager.Instance.moveSpeedBonus;
+        }
+
         rigid.linearVelocity =
-            moveInput * moveSpeed;
+            moveInput * (moveSpeed + bonus);
     }
 }
