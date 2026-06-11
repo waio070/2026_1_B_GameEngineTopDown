@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Arrow : MonoBehaviour
 {
@@ -23,9 +22,15 @@ public class Arrow : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene(
-                SceneManager.GetActiveScene().name
-            );
+            PlayerHP hp =
+                collision.GetComponent<PlayerHP>();
+
+            if (hp != null)
+            {
+                hp.TakeDamage(1);
+            }
+
+            Destroy(gameObject);
         }
 
         if (collision.CompareTag("Wall"))

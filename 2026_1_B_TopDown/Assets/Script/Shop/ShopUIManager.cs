@@ -7,6 +7,15 @@ public class ShopUIManager : MonoBehaviour
     public int speedCost = 5;
     public int hpCost = 10;
 
+    private void Update()
+    {
+        if (shopPanel.activeSelf &&
+            Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseShop();
+        }
+    }
+
     public void BuySpeed()
     {
         if (GameManager.Instance.coinCount < speedCost)
@@ -19,7 +28,7 @@ public class ShopUIManager : MonoBehaviour
 
         GameManager.Instance.moveSpeedBonus += 1f;
 
-        Debug.Log("속도 업그레이드");
+        Debug.Log("이동속도 증가");
     }
 
     public void BuyHP()
@@ -32,9 +41,17 @@ public class ShopUIManager : MonoBehaviour
 
         GameManager.Instance.SpendCoin(hpCost);
 
-        GameManager.Instance.hpBonus += 1;
+        GameManager.Instance.maxHP += 1;
 
-        Debug.Log("체력 업그레이드");
+        PlayerHP playerHP =
+            FindFirstObjectByType<PlayerHP>();
+
+        if (playerHP != null)
+        {
+            playerHP.IncreaseMaxHP(1);
+        }
+
+        Debug.Log("최대 체력 증가");
     }
 
     public void CloseShop()

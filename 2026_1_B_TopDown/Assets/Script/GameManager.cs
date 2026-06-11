@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviour
 
     // 상점 업그레이드 데이터
     public float moveSpeedBonus = 0f;
-    public int hpBonus = 0;
+
+    // 체력 데이터
+    public int maxHP = 3;
+    public int currentHP = 3;
 
     private void Awake()
     {

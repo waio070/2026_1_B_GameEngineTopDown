@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Spike : MonoBehaviour
 {
@@ -9,11 +8,13 @@ public class Spike : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("플레이어 사망");
+            PlayerHP hp =
+                collision.GetComponent<PlayerHP>();
 
-            SceneManager.LoadScene(
-                SceneManager.GetActiveScene().name
-            );
+            if (hp != null)
+            {
+                hp.TakeDamage(1);
+            }
         }
     }
 }
